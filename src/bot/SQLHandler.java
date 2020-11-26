@@ -2,7 +2,7 @@ package bot;
 
 import java.sql.*;
 
-public class JsonHandler {
+public class SQLHandler {
 
     private static final String USERNAME = "root1";
     private static final String PASSWORD = "root1";

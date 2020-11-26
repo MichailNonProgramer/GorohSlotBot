@@ -33,7 +33,7 @@ public class Bot extends TelegramLongPollingBot {
             }
             else {
                 try {
-                    user = JsonHandler.getUser(userId, userName, userFirstName, userLastName);
+                    user = SQLHandler.getUser(userId, userName, userFirstName, userLastName);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -51,7 +51,7 @@ public class Bot extends TelegramLongPollingBot {
             }
 
             Logger.log(userFirstName, userLastName, userName, userId, messageText, sendMessageText);
-            JsonHandler.update(user);
+            SQLHandler.update(user);
             userData.put(userId, user);
 
         }

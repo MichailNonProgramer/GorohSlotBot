@@ -23,7 +23,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="434bc991-daaa-45d4-badc-36af3596dd49">
+        <schema name="playersdb" object-types="procedure, dataset trigger, function, constraint, view, column, table, index" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="434bc991-daaa-45d4-badc-36af3596dd49">
@@ -31,7 +35,9 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="434bc991-daaa-45d4-badc-36af3596dd49" object-ref="schemas/playersdb/tables/slots" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="434bc991-daaa-45d4-badc-36af3596dd49" />
