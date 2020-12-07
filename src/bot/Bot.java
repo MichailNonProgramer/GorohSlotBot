@@ -70,6 +70,6 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private String commandsHandler(String msg) {
-        return new Commands().Command(msg, user, diceMachine);
+        return new Commands().Command(msg, user);
     }
 }

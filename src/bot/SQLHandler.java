@@ -27,7 +27,7 @@ public class SQLHandler {
 
         } else {
             User user = new User(userId, userFirstName, userLastName, userName, 100, 25, "3x3");
-            save(user);
+            create(user);
             return user;
         }
     }
@@ -85,7 +85,7 @@ public class SQLHandler {
         }
     }
 
-    private static void save(User user){
+    private static void create(User user){
         Connection connection;
         PreparedStatement preparedStatement;
         try {

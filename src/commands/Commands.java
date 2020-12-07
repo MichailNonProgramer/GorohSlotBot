@@ -9,7 +9,7 @@ public class Commands {
     private final String mode5x4 = "Автомат 5x4";
     private final String dice = "Игра Кости";
 
-    public String Command(String msg, User user, DiceMachine diceMachine) {
+    public String Command(String msg, User user) {
         user.getKeyboard().AddSetting();
         if(msg.equals("/start") || msg.equals("Назад"))
             return startCommand(user);

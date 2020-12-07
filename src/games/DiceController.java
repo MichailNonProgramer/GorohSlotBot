@@ -29,8 +29,10 @@ public class DiceController {
     }
 
     public static boolean isSameUser(User user) {
-        if (userQueue.size() > 0)
+        if (userQueue.size() > 0) {
+            assert userQueue.peekFirst() != null;
             return user.getUserId().equals(userQueue.peekFirst().getUserId());
+        }
         return false;
     }
 
