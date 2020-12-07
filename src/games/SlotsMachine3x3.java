@@ -3,7 +3,6 @@ package games;
 import bot.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class SlotsMachine3x3{
@@ -25,13 +24,6 @@ public class SlotsMachine3x3{
 
     public String makeSpin(User user) {
         var table = createTable(rows, columns, slotsArr);
-
-        if (user.getBalance() < user.getBet()) {
-            return String.format("Ваш баланс ниже суммы ставки, пожалуйста, пополните баланс.\nБаланс: %s%s",
-                    user.getBalance(),
-                    Emoji.dollar.getEmojiCode());
-        }
-
         var result = new StringBuilder();
         var benefit = 0;
         // С баланса снимается ставка
@@ -63,9 +55,9 @@ public class SlotsMachine3x3{
     }
 
     String printFinalMessage(StringBuilder result, int benefit, User user, int count, String winSlot) {
-        return repeat(Emoji.tilda.getEmojiCode(), count)
+        return Utils.repeat(Emoji.tilda.getEmojiCode(), count)
                 + result
-                + repeat(Emoji.tilda.getEmojiCode(), count)
+                + Utils.repeat(Emoji.tilda.getEmojiCode(), count)
                 + String.format("\nВыигрыш: %s%s\nСтавка: %s%s\nБаланс: %s%s",
                 benefit,
                 Emoji.dollar.getEmojiCode(),
@@ -74,9 +66,5 @@ public class SlotsMachine3x3{
                 user.getBalance(),
                 Emoji.dollar.getEmojiCode())
                 + String.format("\nВыигрышные слоты: %s", winSlot);
-    }
-
-    String repeat(String s, int count) {
-        return count > 0 ? s + repeat(s, --count) : "\n";
     }
 }

@@ -2,8 +2,6 @@ package games;
 
 import bot.User;
 
-import java.util.HashMap;
-
 public class SlotsMachine4x5 extends SlotsMachine3x3{
     public final int rows = 4;
     public final int columns = 5;
@@ -15,11 +13,6 @@ public class SlotsMachine4x5 extends SlotsMachine3x3{
         var table = createTable(rows, columns, slotsArr);
         var slotsPatterns = new SlotsPatterns(table);
 
-        if (user.getBalance() < user.getBet()) {
-            return String.format("Ваш баланс ниже суммы ставки, пожалуйста, пополните баланс.\nБаланс: %s%s",
-                    user.getBalance(),
-                    Emoji.dollar.getEmojiCode());
-        }
         // С баланса снимается ставка
         user.TakeOffMoney(user.getBet());
 
