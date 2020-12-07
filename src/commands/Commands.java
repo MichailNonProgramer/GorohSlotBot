@@ -10,7 +10,7 @@ public class Commands {
     private final String dice = "Игра Кости";
 
     public String Command(String msg, User user, DiceMachine diceMachine) {
-        user.keyBoardUpdate();
+        user.getKeyboard().AddSetting();
         if(msg.equals("/start") || msg.equals("Назад"))
             return startCommand(user);
         if(msg.equals("Выбор ставки"))
@@ -77,14 +77,11 @@ public class Commands {
     }
 
     private String chooseModeCommand(User user) {
-        user.getKeyboardFirstRow().add(mode3x3);
-        user.getKeyboardSecondRow().add(mode5x4);
-        user.getKeyboardSecondRow().add(dice);
-        user.getKeyboardThirdRow().add("Назад");
-        user.getKeyboard().add(user.getKeyboardFirstRow());
-        user.getKeyboard().add(user.getKeyboardSecondRow());
-        user.getKeyboard().add(user.getKeyboardThirdRow());
-        user.getReplyKeyboardMarkup().setKeyboard(user.getKeyboard());
+        user.getKeyboard().AddButtonOneLine(mode3x3);
+        user.getKeyboard().AddButtonTwoLine(mode5x4);
+        user.getKeyboard().AddButtonTwoLine(dice);
+        user.getKeyboard().AddButtonThreeLine("Назад");
+        user.getKeyboard().SaveKeyboard();
         return "Выберите режим игры.";
     }
 
@@ -96,32 +93,26 @@ public class Commands {
     }
 
     private String chooseBetCommand(User user) {
-        user.getKeyboardFirstRow().add("10");
-        user.getKeyboardFirstRow().add("20");
-        user.getKeyboardFirstRow().add("30");
-        user.getKeyboardSecondRow().add("50");
-        user.getKeyboardSecondRow().add("100");
-        user.getKeyboardSecondRow().add("250");
-        user.getKeyboardThirdRow().add("500");
-        user.getKeyboardThirdRow().add("1000");
-        user.getKeyboardThirdRow().add("Назад");
-        user.getKeyboard().add(user.getKeyboardFirstRow());
-        user.getKeyboard().add(user.getKeyboardSecondRow());
-        user.getKeyboard().add(user.getKeyboardThirdRow());
-        user.getReplyKeyboardMarkup().setKeyboard(user.getKeyboard());
+        user.getKeyboard().AddButtonOneLine("10");
+        user.getKeyboard().AddButtonOneLine("20");
+        user.getKeyboard().AddButtonOneLine("30");
+        user.getKeyboard().AddButtonTwoLine("50");
+        user.getKeyboard().AddButtonTwoLine("100");
+        user.getKeyboard().AddButtonTwoLine("250");
+        user.getKeyboard().AddButtonThreeLine("500");
+        user.getKeyboard().AddButtonThreeLine("1000");
+        user.getKeyboard().AddButtonThreeLine("Назад");
+        user.getKeyboard().SaveKeyboard();
         return "Выберите сумму ставки.";
     }
 
     private String startCommand(User user) {
-        user.getKeyboardFirstRow().add("Крути");
-        user.getKeyboardSecondRow().add("Выбор ставки");
-        user.getKeyboardSecondRow().add("Выбор режима");
-        user.getKeyboardThirdRow().add("Пополнить счет");
-        user.getKeyboardThirdRow().add("Баланс");
-        user.getKeyboard().add(user.getKeyboardFirstRow());
-        user.getKeyboard().add(user.getKeyboardSecondRow());
-        user.getKeyboard().add(user.getKeyboardThirdRow());
-        user.getReplyKeyboardMarkup().setKeyboard(user.getKeyboard());
+        user.getKeyboard().AddButtonOneLine("Крути");
+        user.getKeyboard().AddButtonTwoLine("Выбор ставки");
+        user.getKeyboard().AddButtonTwoLine("Выбор режима");
+        user.getKeyboard().AddButtonThreeLine("Пополнить счет");
+        user.getKeyboard().AddButtonThreeLine("Баланс");
+        user.getKeyboard().SaveKeyboard();
         return "Начинаем крутить?";
     }
 }

@@ -10,5 +10,14 @@
     <orderEntry type="library" exported="" name="gson" level="project" />
     <orderEntry type="library" exported="" name="com.fatboyindustrial.gson-javatime-serialisers:gson-javatime-serialisers:1.1.1" level="project" />
     <orderEntry type="library" exported="" name="mysql:mysql-connector-java:8.0.22" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/19.0.0/annotations-19.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

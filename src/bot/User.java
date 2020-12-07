@@ -1,5 +1,6 @@
 package bot;
 
+import bot.abstractKeyboard.KeyboardTelegram;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
@@ -10,30 +11,10 @@ public class User {
     private final String userName;
     private final String userFirstname;
     private final String userLastName;
+    private KeyboardTelegram keyboardTelegram;
     private long balance;
     private int bet;
     private String mode;
-    private ReplyKeyboardMarkup replyKeyboardMarkup;
-    private ArrayList<KeyboardRow> keyboard;
-    private KeyboardRow keyboardFirstRow;
-    private KeyboardRow keyboardSecondRow;
-    private KeyboardRow keyboardThirdRow;
-
-    public KeyboardRow getKeyboardFirstRow() {
-        return keyboardFirstRow;
-    }
-
-    public ArrayList<KeyboardRow> getKeyboard() {
-        return keyboard;
-    }
-
-    public KeyboardRow getKeyboardSecondRow() {
-        return keyboardSecondRow;
-    }
-
-    public KeyboardRow getKeyboardThirdRow() {
-        return keyboardThirdRow;
-    }
 
     public User(String id, String firstName, String lastName, String name, long balance, int bet, String mode) {
         this.userId = id;
@@ -43,35 +24,11 @@ public class User {
         this.balance = balance;
         this.bet = bet;
         this.mode = mode;
-        this.replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        this.replyKeyboardMarkup.setSelective(true);
-        this.replyKeyboardMarkup.setResizeKeyboard(true);
-        this.replyKeyboardMarkup.setOneTimeKeyboard(false);
-        this.keyboard = new ArrayList<>();
-        this.keyboardFirstRow = new KeyboardRow();
-        this.keyboardSecondRow = new KeyboardRow();
-        this.keyboardThirdRow = new KeyboardRow();
+        this.keyboardTelegram = new KeyboardTelegram(new ReplyKeyboardMarkup());
     }
 
-    public void setReplyKeyboardMarkup(ReplyKeyboardMarkup replyKeyboardMarkup) {
-        this.replyKeyboardMarkup = replyKeyboardMarkup;
-    }
-
-    public void keyBoardUpdate(){
-        this.replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        this.keyboard = new ArrayList<>();
-        this.keyboardFirstRow = new KeyboardRow();
-        this.keyboardSecondRow = new KeyboardRow();
-        this.keyboardThirdRow = new KeyboardRow();
-        replyKeyboardMarkup.setSelective(true);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
-
-    }
-
-
-    public ReplyKeyboardMarkup getReplyKeyboardMarkup() {
-        return replyKeyboardMarkup;
+    public KeyboardTelegram getKeyboard(){
+        return this.keyboardTelegram;
     }
 
     public void setMode(String mode) {

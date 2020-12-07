@@ -25,31 +25,6 @@ public class SlotsPatterns {
         this.benefit = 0;
     }
 
-//    public void logWinPattern() {
-//        var copy = table;
-//        var slot = new Slot(Emoji.background.getEmojiCode(), 0);
-//        copy = new Slot[][]{
-//                {slot, slot, slot, slot, slot},
-//                {slot, slot, slot, slot, slot},
-//                {slot, slot, slot, slot, slot},
-//                {slot, slot, slot, slot, slot}};
-//        copy[2][0] = table[2][0];
-//        copy[1][1] = table[1][1];
-//        copy[0][2] = table[0][2];
-//        copy[1][3] = table[1][3];
-//        copy[2][4] = table[2][4];
-//        var result = new StringBuilder();
-//        for (Slot[] slots : copy) {
-//            result.append(slots[0].getCode());
-//            result.append(slots[1].getCode());
-//            result.append(slots[2].getCode());
-//            result.append(slots[3].getCode());
-//            result.append(slots[4].getCode());
-//            result.append("\n");
-//        }
-//        System.out.println(result.toString());
-//    }
-
     public void CheckCollisionsAndAddMoney(User user){
         var patternsArr = new ArrayList<>(
                 Arrays.asList(
@@ -63,26 +38,8 @@ public class SlotsPatterns {
                         patternDiagonalReverse1(),
                         patternDiagonal2(),
                         patternDiagonalReverse2(),
-//                        patternDiagonal3(),
-//                        patternDiagonalReverse3(),
-//                        patternEarth(),
-//                        patternEarthReverse(),
-//                        patternEarth2(),
-//                        patternEarthReverse2(),
                         patternW(),
                         patternM()
-//                        patternZig1(),
-//                        patternZigReverse1(),
-//                        patternZig2(),
-//                        patternZigReverse2(),
-//                        patternNipple1(),
-//                        patternNippleReverse1(),
-//                        patternNipple2(),
-//                        patternNippleReverse2(),
-//                        patternOddDiagonal1(),
-//                        patternOddDiagonalReverse1(),
-//                        patternOddDiagonal2(),
-//                        patternOddDiagonalReverse2()
                 ));
         for (var pair : patternsArr)
         {
@@ -171,30 +128,7 @@ public class SlotsPatterns {
     private Pair<Integer, Slot> patternDiagonalReverse2(){
         return parsePattern(table[3][0], table[3][1], table[2][2], table[1][3], table[0][4]);
     }
-//    // \-\
-//    private Pair<Integer, Slot> patternDiagonal3(){
-//        return parsePattern(table[0][0], table[1][1], table[2][2], table[2][3], table[3][4]);
-//    }
-//    // /-/
-//    private Pair<Integer, Slot> patternDiagonalReverse3(){
-//        return parsePattern(table[3][0], table[2][1], table[1][2], table[1][3], table[0][4]);
-//    }
-//    // -___-
-//    private Pair<Integer, Slot> patternEarth(){
-//        return parsePattern(table[2][0], table[3][1], table[3][2], table[3][3], table[2][4]);
-//    }
-//    // _---_
-//    private Pair<Integer, Slot> patternEarthReverse(){
-//        return parsePattern(table[1][0], table[0][1], table[0][2], table[0][3], table[1][4]);
-//    }
-//    // -___-
-//    private Pair<Integer, Slot> patternEarth2(){
-//        return parsePattern(table[0][0], table[1][1], table[1][2], table[1][3], table[0][4]);
-//    }
-//    // _---_
-//    private Pair<Integer, Slot> patternEarthReverse2(){
-//        return parsePattern(table[3][0], table[2][1], table[2][2], table[2][3], table[3][4]);
-//    }
+
     // W
     private Pair<Integer, Slot> patternW(){
         return parsePattern(table[0][0], table[1][1], table[0][2], table[1][3], table[0][4]);
@@ -203,52 +137,4 @@ public class SlotsPatterns {
     private Pair<Integer, Slot> patternM(){
         return parsePattern(table[3][0], table[2][1], table[3][2], table[2][3], table[3][4]);
     }
-//    // \/\
-//    private Pair<Integer, Slot> patternZig1(){
-//        return parsePattern(table[2][0], table[3][1], table[2][2], table[1][3], table[2][4]);
-//    }
-//    // /\/
-//    private Pair<Integer, Slot> patternZigReverse1(){
-//        return parsePattern(table[1][0], table[0][1], table[1][2], table[2][3], table[1][4]);
-//    }
-//    // \/\
-//    private Pair<Integer, Slot> patternZig2(){
-//        return parsePattern(table[1][0], table[2][1], table[1][2], table[0][3], table[1][4]);
-//    }
-//    // /\/
-//    private Pair<Integer, Slot> patternZigReverse2(){
-//        return parsePattern(table[2][0], table[1][1], table[2][2], table[3][3], table[2][4]);
-//    }
-//    // __-__
-//    private Pair<Integer, Slot> patternNipple1(){
-//        return parsePattern(table[3][0], table[3][1], table[2][2], table[3][3], table[3][4]);
-//    }
-//    // --_--
-//    private Pair<Integer, Slot> patternNippleReverse1(){
-//        return parsePattern(table[2][0], table[2][1], table[3][2], table[2][3], table[2][4]);
-//    }
-//    // __-__
-//    private Pair<Integer, Slot> patternNipple2(){
-//        return parsePattern(table[1][0], table[1][1], table[0][2], table[1][3], table[1][4]);
-//    }
-//    // --_--
-//    private Pair<Integer, Slot> patternNippleReverse2(){
-//        return parsePattern(table[0][0], table[0][1], table[1][2], table[0][3], table[0][4]);
-//    }
-//    // -\_
-//    private Pair<Integer, Slot> patternOddDiagonal1(){
-//        return parsePattern(table[1][0], table[1][1], table[2][2], table[3][3], table[3][4]);
-//    }
-//    // _/-
-//    private Pair<Integer, Slot> patternOddDiagonalReverse1(){
-//        return parsePattern(table[2][0], table[2][1], table[1][2], table[0][3], table[0][4]);
-//    }
-//    // +--_
-//    private Pair<Integer, Slot> patternOddDiagonal2(){
-//        return parsePattern(table[1][0], table[2][1], table[2][2], table[2][3], table[3][4]);
-//    }
-//    // -++*
-//    private Pair<Integer, Slot> patternOddDiagonalReverse2(){
-//        return parsePattern(table[2][0], table[1][1], table[1][2], table[1][3], table[0][4]);
-//    }
 }

@@ -23,8 +23,7 @@ public class SlotsMachine3x3{
         return gameTable;
     }
 
-    public String makeSpin(String userId, HashMap<String, User> userData) {
-        var user = userData.get(userId);
+    public String makeSpin(User user) {
         var table = createTable(rows, columns, slotsArr);
 
         if (user.getBalance() < user.getBet()) {

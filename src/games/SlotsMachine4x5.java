@@ -10,8 +10,7 @@ public class SlotsMachine4x5 extends SlotsMachine3x3{
     public final Slot[] slotsArr = SlotsConfig.slotsArr4x5;
 
     @Override
-    public String makeSpin(String userId, HashMap<String, User> userData) {
-        var user = userData.get(userId);
+    public String makeSpin(User user) {
         var result = new StringBuilder();
         var table = createTable(rows, columns, slotsArr);
 //        table = new Slot[][]{
