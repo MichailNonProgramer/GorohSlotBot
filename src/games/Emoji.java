@@ -1,4 +1,4 @@
-package slotsMachine;
+package games;
 
 public enum Emoji {
     tilda("\u3030\ufe0f"),
@@ -15,6 +15,7 @@ public enum Emoji {
     peach("\ud83c\udf51"),
     avocado("\ud83e\udd51"),
     tomato("\ud83c\udf45"),
+    sign("\u2705"),
     background("\ud83c\udf2b"),
     ;
 
@@ -28,4 +29,3 @@ public enum Emoji {
         return this.emojiCode;
     }
 }
-

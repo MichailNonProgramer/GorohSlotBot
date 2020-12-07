@@ -1,4 +1,4 @@
-package slotsMachine;
+package games;
 
 import bot.User;
 

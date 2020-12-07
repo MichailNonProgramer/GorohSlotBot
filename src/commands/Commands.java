@@ -1,22 +1,15 @@
 package commands;
 
 import bot.User;
-import slotsMachine.Emoji;
-import slotsMachine.SlotsMachine3x3;
-import slotsMachine.SlotsMachine4x5;
+import games.*;
 
-import java.util.HashMap;
 
 public class Commands {
-    public boolean isNumber(String str) {
-        if (str == null || str.isEmpty()) return false;
-        for (int i = 0; i < str.length(); i++) {
-            if (!Character.isDigit(str.charAt(i))) return false;
-        }
-        return true;
-    }
+    private final String mode3x3 = "Автомат 3x3";
+    private final String mode5x4 = "Автомат 5x4";
+    private final String dice = "Игра Кости";
 
-    public String Command(String msg, User user, HashMap<String, User> userData){
+    public String Command(String msg, User user, DiceMachine diceMachine) {
         user.keyBoardUpdate();
         if(msg.equals("/start") || msg.equals("Назад"))
             return startCommand(user);
@@ -24,20 +17,22 @@ public class Commands {
             return chooseBetCommand(user);
         if(msg.equals("Выбор режима"))
             return chooseModeCommand(user);
-        if(msg.equals("Автомат 3x3") || msg.equals("Автомат 5x4"))
+        if(msg.equals(mode3x3)
+                || msg.equals(mode5x4)
+                || msg.equals(dice))
             return setModeCommand(msg, user);
-        if(isNumber(msg))
+        if(Utils.isNumber(msg))
             return setBetCommand(user, msg);
         if(msg.equals("Пополнить счет"))
             return addBalanceCommand(user);
         if(msg.equals("Баланс"))
             return getBalanceCommand(user);
         if(msg.equals("Крути"))
-            return spinCommand(user, userData);
+            return spinCommand(user, diceMachine);
         else return "Дядя, ты дурак?";
     }
 
-    private String spinCommand(User user, HashMap<String,User> userData) {
+    private String spinCommand(User user, DiceMachine diceMachine) {
         if(user.getBalance() <= 0)
             return String.format("Пополните баланс.\nБаланс: %s%s",
                     user.getBalance(),
@@ -48,15 +43,15 @@ public class Commands {
         var mode = user.getMode();
 
         try {
-            if(mode.equals("3x3"))
-                return machine3x3.makeSpin(user.getUserId(), userData);
-            else if(mode.equals("5x4"))
-                return machine5x4.makeSpin(user.getUserId(), userData);
-            else
-                return "Выберите режим";
+            return switch (mode) {
+                case "3x3" -> machine3x3.makeSpin(user);
+                case "5x4" -> machine5x4.makeSpin(user);
+                case "Кости" -> diceMachine.makeThrow(user);
+                default -> "Выберите режим";
+            };
         }
         catch (Throwable e){
-            return "Выберите режим";
+            return String.format("Ошибка %s", e);
         }
 
     }
@@ -76,20 +71,15 @@ public class Commands {
     }
 
     private String setModeCommand(String msg, User user) {
-        user.getKeyboardFirstRow().add("Автомат 3x3");
-        user.getKeyboardSecondRow().add("Автомат 5x4");
-        user.getKeyboardThirdRow().add("Назад");
-        user.getKeyboard().add(user.getKeyboardFirstRow());
-        user.getKeyboard().add(user.getKeyboardSecondRow());
-        user.getKeyboard().add(user.getKeyboardThirdRow());
-        user.getReplyKeyboardMarkup().setKeyboard(user.getKeyboard());
         user.setMode(msg.split(" ")[1]);
+        startCommand(user);
         return String.format("Выбран режим: %s.", msg);
     }
 
     private String chooseModeCommand(User user) {
-        user.getKeyboardFirstRow().add("Автомат 3x3");
-        user.getKeyboardSecondRow().add("Автомат 5x4");
+        user.getKeyboardFirstRow().add(mode3x3);
+        user.getKeyboardSecondRow().add(mode5x4);
+        user.getKeyboardSecondRow().add(dice);
         user.getKeyboardThirdRow().add("Назад");
         user.getKeyboard().add(user.getKeyboardFirstRow());
         user.getKeyboard().add(user.getKeyboardSecondRow());

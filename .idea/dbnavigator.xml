@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="434bc991-daaa-45d4-badc-36af3596dd49">
-        <schema name="playersdb" object-types="procedure, column, constraint, function, view, dataset trigger, index, table" />
+        <schema name="playersdb" object-types="table, function, dataset trigger, procedure, constraint, view, column, index" />
       </connection>
     </loaded-nodes>
   </component>
@@ -35,9 +35,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="434bc991-daaa-45d4-badc-36af3596dd49" object-ref="schemas/playersdb/tables/slots" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="434bc991-daaa-45d4-badc-36af3596dd49" />

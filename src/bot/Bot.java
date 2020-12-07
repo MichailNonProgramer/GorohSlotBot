@@ -1,6 +1,7 @@
 package bot;
 
 import commands.Commands;
+import  games.DiceMachine;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class Bot extends TelegramLongPollingBot {
+    DiceMachine diceMachine = new DiceMachine();
     HashMap<String, User> userData = new HashMap<>();
     String userId;
     User user;
@@ -68,6 +70,6 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private String commandsHandler(String msg) {
-        return new Commands().Command(msg, user, userData);
+        return new Commands().Command(msg, user, diceMachine);
     }
 }

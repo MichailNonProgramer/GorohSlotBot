@@ -1,4 +1,4 @@
-package slotsMachine;
+package games;
 
 import bot.User;
 import org.glassfish.grizzly.utils.Pair;

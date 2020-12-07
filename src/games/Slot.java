@@ -1,4 +1,4 @@
-package slotsMachine;
+package games;
 
 public class Slot {
     public String getCode() {
