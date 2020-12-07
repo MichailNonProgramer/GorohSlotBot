@@ -2,12 +2,12 @@ package bot.abstractKeyboard;
 
 import java.util.ArrayList;
 
-abstract class AbstractKyeboard {
+abstract class AbstractKeyboard {
 
     public final Object keyboard;
     private ArrayList<Object> KeyboardRows;
 
-    public AbstractKyeboard(Object keyboard){
+    public AbstractKeyboard(Object keyboard){
         this.keyboard = keyboard;
     }
 

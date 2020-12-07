@@ -28,27 +28,36 @@ public class Commands {
         if(msg.equals("Баланс"))
             return getBalanceCommand(user);
         if(msg.equals("Крути"))
-            return spinCommand(user, diceMachine);
+            return spinCommand(user);
         else return "Дядя, ты дурак?";
     }
 
-    private String spinCommand(User user, DiceMachine diceMachine) {
+    private String spinCommand(User user) {
         if(user.getBalance() <= 0)
             return String.format("Пополните баланс.\nБаланс: %s%s",
                     user.getBalance(),
                     Emoji.dollar.getEmojiCode());
+        if (user.getBalance() < user.getBet()) {
+            return String.format("Ваш баланс ниже суммы ставки, пожалуйста, пополните баланс.\nБаланс: %s%s",
+                    user.getBalance(),
+                    Emoji.dollar.getEmojiCode());
+        }
 
-        var machine3x3 = new SlotsMachine3x3();
-        var machine5x4 = new SlotsMachine4x5();
         var mode = user.getMode();
 
         try {
-            return switch (mode) {
-                case "3x3" -> machine3x3.makeSpin(user);
-                case "5x4" -> machine5x4.makeSpin(user);
-                case "Кости" -> diceMachine.makeThrow(user);
-                default -> "Выберите режим";
-            };
+            switch (mode) {
+                case "3x3":
+                    var machine3x3 = new SlotsMachine3x3();
+                    return machine3x3.makeSpin(user);
+                case "5x4":
+                    var machine5x4 = new SlotsMachine4x5();
+                    return machine5x4.makeSpin(user);
+                case "Кости":
+                    return DiceController.tryPlay(user);
+                default:
+                    return "Выберите режим";
+            }
         }
         catch (Throwable e){
             return String.format("Ошибка %s", e);

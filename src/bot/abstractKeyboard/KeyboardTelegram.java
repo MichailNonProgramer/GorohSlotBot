@@ -1,11 +1,10 @@
 package bot.abstractKeyboard;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ForceReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.util.ArrayList;
 
-public class KeyboardTelegram extends AbstractKyeboard{
+public class KeyboardTelegram extends AbstractKeyboard {
 
     private ReplyKeyboardMarkup replyKeyboardMarkup;
     private ArrayList<KeyboardRow> keyboard;

@@ -13,11 +13,6 @@ public class SlotsMachine4x5 extends SlotsMachine3x3{
     public String makeSpin(User user) {
         var result = new StringBuilder();
         var table = createTable(rows, columns, slotsArr);
-//        table = new Slot[][]{
-//                {slotsArr[0], slotsArr[0], slotsArr[5], slotsArr[4], slotsArr[0]},
-//                {slotsArr[4], slotsArr[5], slotsArr[1], slotsArr[5], slotsArr[1]},
-//                {slotsArr[5], slotsArr[1], slotsArr[1], slotsArr[1], slotsArr[5]},
-//                {slotsArr[0], slotsArr[1], slotsArr[1], slotsArr[1], slotsArr[5]}};
         var slotsPatterns = new SlotsPatterns(table);
 
         if (user.getBalance() < user.getBet()) {

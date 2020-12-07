@@ -1,6 +1,6 @@
 package bot.abstractKeyboard;
 
-public class KeyboardVK extends AbstractKyeboard {
+public class KeyboardVK extends AbstractKeyboard {
 
     public KeyboardVK(Object keyboard) {
         super(keyboard);
