@@ -50,21 +50,20 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
 
-            if (ChatController.isUserInChat(user)
-                    & !ChatController.isExitCommand(messageText)
-                    & !ChatController.isStatusCommand(messageText)) {
-                ChatController.handleMessage(messageText, user);
-                Logger.log(userFirstName, userLastName, userName, userId, messageText, "");
-                return;
+            String sendMessageText;
+            if (ChatController.isWriteMessage(messageText, user)) {
+                sendMessageText = "Загадочно молчит";
+                ChatController.writeMessage(messageText, user);
             }
-
-            String sendMessageText = commandsHandler(messageText);
-            SendMessage sendMessage = new SendMessage().setChatId(chatId).setText(sendMessageText);
-            sendMessage.setReplyMarkup(user.getReplyKeyboardMarkup());
-            try {
-                execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
+            else {
+                sendMessageText = commandsHandler(messageText);
+                SendMessage sendMessage = new SendMessage().setChatId(chatId).setText(sendMessageText);
+                sendMessage.setReplyMarkup(user.getReplyKeyboardMarkup());
+                try {
+                    execute(sendMessage);
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
             }
 
             Logger.log(userFirstName, userLastName, userName, userId, messageText, sendMessageText);

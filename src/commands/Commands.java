@@ -8,18 +8,26 @@ public class Commands {
     private final String mode5x4 = "Автомат 5x4";
     private final String dice = "Игра Кости";
     private final String smoke = "Режим Курилка";
+    private final String status = "Кто в курилке?";
+    private final String exit = "Покинуть курилку";
+    private final String chooseBet = "Выбор ставки";
+    private final String chooseMode = "Выбор режима";
+    private final String back = "Назад";
+    private final String addBalance = "Пополнить счет";
+    private final String balance = "Баланс";
+    private final String spin = "Крути";
 
     public String Command(String msg, User user) {
         user.keyBoardUpdate();
-        if(msg.equals("Покинуть курилку"))
+        if(msg.equals(exit))
             return smokeExitCommand(user);
-        if(msg.equals("Кто онлайн?"))
+        if(msg.equals(status))
             return smokeStatusCommand();
-        if(msg.equals("/start") || msg.equals("Назад"))
+        if(msg.equals("/start") || msg.equals(back))
             return startCommand(user);
-        if(msg.equals("Выбор ставки"))
+        if(msg.equals(chooseBet))
             return chooseBetCommand(user);
-        if(msg.equals("Выбор режима"))
+        if(msg.equals(chooseMode))
             return chooseModeCommand(user);
         if(msg.equals(mode3x3)
                 || msg.equals(mode5x4)
@@ -28,11 +36,11 @@ public class Commands {
             return setModeCommand(msg, user);
         if(Utils.isNumber(msg))
             return setBetCommand(user, msg);
-        if(msg.equals("Пополнить счет"))
+        if(msg.equals(addBalance))
             return addBalanceCommand(user);
-        if(msg.equals("Баланс"))
+        if(msg.equals(balance))
             return getBalanceCommand(user);
-        if(msg.equals("Крути"))
+        if(msg.equals(spin))
             return spinCommand(user);
         return "Д̶̳͙̥̫͇̣͍͛͌̈́̅̂͆̂̅͊я̵̩͓̬͍̙̞̤̠͇͎̠̙̓͊̓̊͌̀̀д̴̟̰̲̠͙͉̇̓͛̌̎̄я̴̠̯͔͕̤̗̠̬̲̆̽̉̏̊̐̄͆,̶̯̩̤͖͍̽̌̇͌̇̍̀̌̆̈́͐̍ͅͅ т҈̰͍͍̲͔̬̗͔͕̟̾́͐͂̔̓̿́͆̓ͅͅы̵͔̭̣͓̞͕̝̙̖̐̐͆͐̌̽̇̏̎͊͗ д̸̮̪͕͓̩̉̈́̅̽͛̆̋̐̉̇͑у̶͇̰̜͖̤̀͊̌͌̅̈̊̑̒̔р̵̘̣̙̮̦͖͗̅͑̄̀̉а̵͖̖̜̖̝̳̗̿̃͋̈̾̈́̄͗̌ͅк̶̰̘̲̥͙͉͓͊̃́̅͛̓͊̉̈́̾̈?̵̳͓͚̪̤̠̳̲̞̄̄̆͑̿̏́͐́̋̚ͅ";
     }
@@ -93,21 +101,27 @@ public class Commands {
 
     private String smokeEnterCommand(User user) {
         ChatController.addUser(user);
-        var message = String.format("%s приземляется в курилке!", user.getUserName());
+        var message = String.format("*%s* приземляется в курилке!", user.getUserName());
         ChatController.sendAllUsers(message);
-        user.getKeyboardFirstRow().add("Покинуть курилку");
-        user.getKeyboardFirstRow().add("Кто онлайн?");
+        user.getKeyboardFirstRow().add("Стрельнуть");
+        user.getKeyboardFirstRow().add(exit);
+        user.getKeyboardFirstRow().add(status);
         user.getKeyboard().add(user.getKeyboardFirstRow());
         user.getReplyKeyboardMarkup().setKeyboard(user.getKeyboard());
         return "Вы вошли в курилку";
     }
 
     private String smokeExitCommand(User user) {
-        ChatController.deleteUser(user);
-        var message = String.format("%s покинул нас...", user.getUserName());
-        ChatController.sendAllUsers(message);
-        startCommand(user);
-        return "Вы вышли из курилки";
+        if (ChatController.chatUsers.contains(user)) {
+            ChatController.deleteUser(user);
+            var message = String.format("*%s* покинул нас...", user.getUserName());
+            var thread = new ChatAllThread(message);
+            thread.start();
+            chooseModeCommand(user);
+            return "Вы вышли из курилки";
+        }
+        chooseModeCommand(user);
+        return "Заходи по новой";
     }
 
     private String smokeStatusCommand() {
@@ -119,7 +133,7 @@ public class Commands {
         user.getKeyboardFirstRow().add(smoke);
         user.getKeyboardSecondRow().add(mode5x4);
         user.getKeyboardSecondRow().add(dice);
-        user.getKeyboardThirdRow().add("Назад");
+        user.getKeyboardThirdRow().add(back);
         user.getKeyboard().add(user.getKeyboardFirstRow());
         user.getKeyboard().add(user.getKeyboardSecondRow());
         user.getKeyboard().add(user.getKeyboardThirdRow());
@@ -143,7 +157,7 @@ public class Commands {
         user.getKeyboardSecondRow().add("250");
         user.getKeyboardThirdRow().add("500");
         user.getKeyboardThirdRow().add("1000");
-        user.getKeyboardThirdRow().add("Назад");
+        user.getKeyboardThirdRow().add(back);
         user.getKeyboard().add(user.getKeyboardFirstRow());
         user.getKeyboard().add(user.getKeyboardSecondRow());
         user.getKeyboard().add(user.getKeyboardThirdRow());
@@ -152,11 +166,11 @@ public class Commands {
     }
 
     private String startCommand(User user) {
-        user.getKeyboardFirstRow().add("Крути");
-        user.getKeyboardSecondRow().add("Выбор ставки");
-        user.getKeyboardSecondRow().add("Выбор режима");
-        user.getKeyboardThirdRow().add("Пополнить счет");
-        user.getKeyboardThirdRow().add("Баланс");
+        user.getKeyboardFirstRow().add(spin);
+        user.getKeyboardSecondRow().add(chooseBet);
+        user.getKeyboardSecondRow().add(chooseMode);
+        user.getKeyboardThirdRow().add(addBalance);
+        user.getKeyboardThirdRow().add(balance);
         user.getKeyboard().add(user.getKeyboardFirstRow());
         user.getKeyboard().add(user.getKeyboardSecondRow());
         user.getKeyboard().add(user.getKeyboardThirdRow());
