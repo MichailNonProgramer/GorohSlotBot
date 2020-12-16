@@ -1,1 +1,1 @@
-worker: sh target/bin/GorohSlot
+web: java -jar target/GorohSlot-1.0-SNAPSHOT.jar
