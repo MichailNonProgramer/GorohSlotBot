@@ -92,9 +92,9 @@ fi
 exec "$JAVACMD" $JAVA_OPTS \
   $EXTRA_JVM_ARGUMENTS \
   -classpath "$CLASSPATH" \
-  -Dapp.name="Devy" \
+  -Dapp.name="GorohSlot" \
   -Dapp.pid="$$" \
   -Dapp.repo="$REPO" \
   -Dbasedir="$BASEDIR" \
-  main.java.com.urfu.Devy.Main \
+  main.java.com.urfu.GorohSlot.Main \
   "$@"
