@@ -17,8 +17,8 @@
                     <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>main.java.com.urfu.Devy.Main</mainClass>
-                            <name>Devy</name>
+                            <mainClass>main.java.com.urfu.GorohSlot.Main</mainClass>
+                            <name>GorohSlot</name>
                         </program>
                     </programs>
                 </configuration>
