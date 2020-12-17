@@ -44,14 +44,17 @@
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.3</version>
+                <configuration>
+                    <appName>serene-temple-04007</appName>
+                    <processTypes>
+                        <web>
+                            java $JAVA_OPTS -cp target/classes:target/dependency/* main.java.com.urfu.GorohSlot.Main
+                        </web>
+                    </processTypes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>com.urfu.GorohSlot.Main</mainClass>
-        <java.version>15</java.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.xerial</groupId>
