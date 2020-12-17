@@ -44,14 +44,6 @@
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.3</version>
-                <configuration>
-                    <appName>serene-temple-04007</appName>
-                    <processTypes>
-                        <web>
-                            java $JAVA_OPTS -cp target/classes:target/dependency/* main.java.com.urfu.GorohSlot.Main
-                        </web>
-                    </processTypes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
