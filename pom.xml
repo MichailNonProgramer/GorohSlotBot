@@ -80,12 +80,7 @@
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
-            <version>4.9.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.telegram</groupId>
-            <artifactId>telegrambots-meta</artifactId>
-            <version>4.9.1</version>
+            <version>4.7</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
