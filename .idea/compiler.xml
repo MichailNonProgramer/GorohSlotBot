@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="GorohSlot" options="--enable-preview" />
+      <module name="GorohSlot" options="" />
     </option>
   </component>
 </project>
