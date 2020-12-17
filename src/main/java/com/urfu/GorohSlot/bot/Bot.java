@@ -14,7 +14,7 @@ public class Bot extends TelegramLongPollingBot {
     public static HashMap<String, User> userData = new HashMap<>();
     User user;
 
-    private final String botToken = "1386672879:AAGgWbEIPyxfd1e8ObdU7AHo1Xc_o7piass";
+    private final String botToken = System.getenv("TOKEN");
 
     @Override
     public void onUpdateReceived(Update update) {

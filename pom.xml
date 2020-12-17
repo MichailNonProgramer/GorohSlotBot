@@ -45,7 +45,7 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.3</version>
                 <configuration>
-                    <appName>afternoon-lowlands-81084</appName>
+                    <appName>serene-temple-04007</appName>
                     <processTypes>
                         <web>
                             java $JAVA_OPTS -cp target/classes:target/dependency/* main.java.com.urfu.GorohSlot.Main
