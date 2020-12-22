@@ -18,16 +18,7 @@ public class CommandsChat {
     }
 
     public static String smokeExitCommand(User user) {
-        if (ChatController.chatUsers.contains(user)) {
-            ChatController.deleteUser(user);
-            var message = String.format("*%s* покинул нас...", user.getUserName());
-            var thread = new SendAllThread(message, user, ChatController.chatUsers);
-            thread.start();
-            Commands.chooseModeCommand(user);
-            return "Вы вышли из курилки";
-        }
-        Commands.chooseModeCommand(user);
-        return "Заходи по новой";
+        return "Вы не в курилке";
     }
 
     public static String smokeStatusCommand() {

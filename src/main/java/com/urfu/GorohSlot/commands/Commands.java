@@ -26,14 +26,14 @@ public class Commands {
 
     public static String ExecuteCommand(String msg, User user) {
         user.getKeyboard().AddSetting();
-        if(msg.equals(exitSmoke))
-            return CommandsChat.smokeExitCommand(user);
-        if(msg.equals(status))
-            return CommandsChat.smokeStatusCommand();
         if(msg.equals(exitAdvert))
             return CommandsAdvertisement.advertExitCommand(user);
         if(user.getMode().equals(advert))
             return AdvertHandler.handleAdvertMessage(msg, user);
+        if(msg.equals(exitSmoke))
+            return CommandsChat.smokeExitCommand(user);
+        if(msg.equals(status))
+            return CommandsChat.smokeStatusCommand();
         if(msg.equals("/start") || msg.equals(back))
             return startCommand(user);
         if(msg.equals(chooseMode))
@@ -54,9 +54,9 @@ public class Commands {
             return getBalanceCommand(user);
         if(msg.equals(spin))
             return spinCommand(user);
-        return "Д̶̳͙̥̫͇̣͍͛͌̈́̅̂͆̂̅͊я̵̩͓̬͍̙̞̤̠͇͎̠̙̓͊̓̊͌̀̀д̴̟̰̲̠͙͉̇̓͛̌̎̄я̴̠̯͔͕̤̗̠̬̲̆̽̉̏̊̐̄͆,̶̯̩̤͖͍̽̌̇͌̇̍̀̌̆̈́͐̍ͅͅ" +
-                " т҈̰͍͍̲͔̬̗͔͕̟̾́͐͂̔̓̿́͆̓ͅͅы̵͔̭̣͓̞͕̝̙̖̐̐͆͐̌̽̇̏̎͊͗ д̸̮̪͕͓̩̉̈́̅̽͛̆̋̐̉̇͑у̶͇̰̜͖̤̀͊̌͌̅̈̊̑̒̔р" +
-                "̵̘̣̙̮̦͖͗̅͑̄̀̉а̵͖̖̜̖̝̳̗̿̃͋̈̾̈́̄͗̌ͅк̶̰̘̲̥͙͉͓͊̃́̅͛̓͊̉̈́̾̈?̵̳͓͚̪̤̠̳̲̞̄̄̆͑̿̏́͐́̋̚ͅ";
+        return "Д̶͛͌я̵̓͊д̴̇̓я̴̆̽,̶̽̌" +
+                " т҈̾́͐ы̵̐̐ д̸̉̈́у̶̀͊р" +
+                "̵͗̅а̵̿̃к̶͊̃?̵̄̄";
     }
 
     public static String chooseModeCommand(User user) {
