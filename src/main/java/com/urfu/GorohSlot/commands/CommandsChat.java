@@ -26,8 +26,7 @@ public class CommandsChat {
             Commands.chooseModeCommand(user);
             return "Вы вышли из курилки";
         }
-        Commands.chooseModeCommand(user);
-        return "Заходи по новой";
+        return "Вы не в курилке";
     }
 
     public static String smokeStatusCommand() {

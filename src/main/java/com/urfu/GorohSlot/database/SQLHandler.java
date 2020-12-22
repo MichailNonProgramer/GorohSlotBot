@@ -13,13 +13,15 @@ import java.util.ArrayList;
 
 public class SQLHandler {
 
-    private static final String URL = "jdbc:sqlite:./resources/playersdb.db";
-    private static final String SELECT = "select * from userInfo where userID = ?";
-    private static final String INSERT = "insert into userInfo values (?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE = "update userInfo " + "set balance = ?, " + "bet = ?, " +  "mode = ?, "
-            + "userName = ?, " + "userFirstName = ?, " + "userLastName = ?" + "where userID = ?";
-    private static final String SELECTMODE = "select * from userInfo where mode = ?";
-    private static final String SELECTALL = "select * from userInfo";
+    private static final String SELECT = "select * from public.\"userInfo\" where \"userID\" = ?";
+    private static final String INSERT = "insert into public.\"userInfo\" values (?, ?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE = "update public.\"userInfo\" " + "set balance = ?, " + "bet = ?, " +  "mode = ?, "
+            + "\"userName\" = ?, " + "\"userFirstName\" = ?, " + "\"userLastName\" = ?" + "where \"userID\" = ?";
+    private static final String SELECTMODE = "select * from public.\"userInfo\" where mode = ?";
+    private static final String SELECTALL = "select * from public.\"userInfo\"";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "0000";
+    private static final String URL = "jdbc:postgresql://localhost:5432/playersdb";
     private static Connection connection;
 
     public static User getUser(String userId, String userName, String userFirstName, String userLastName){
@@ -36,7 +38,7 @@ public class SQLHandler {
 
     private static void connection() {
         try {
-            connection = DriverManager.getConnection(URL);
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -44,9 +46,10 @@ public class SQLHandler {
 
     private static boolean existUser(String userId, Connection connection) {
         try(PreparedStatement preparedStatement = connection.prepareStatement(SELECT)) {
-            preparedStatement.setString(1, userId);
+            preparedStatement.setString(1,  userId);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
+                    System.out.println("Нашел");
                     return true;
                 }
             }
