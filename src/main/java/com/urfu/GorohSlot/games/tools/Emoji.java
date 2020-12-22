@@ -17,6 +17,8 @@ public enum Emoji {
     tomato("\ud83c\udf45"),
     sign("\u2705"),
     background("\ud83c\udf2b"),
+    machine("\ud83c\udfb0"),
+    attention("\u26a0\ufe0f"),
     ;
 
     private final String emojiCode;

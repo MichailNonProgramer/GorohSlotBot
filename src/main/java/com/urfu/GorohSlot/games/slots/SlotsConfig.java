@@ -14,7 +14,6 @@ public class SlotsConfig {
             new Slot(Emoji.tomato.getEmojiCode(), 1.5),
             new Slot(Emoji.apple.getEmojiCode(), 2),
             new Slot(Emoji.melon.getEmojiCode(), 2),
-            new Slot(Emoji.avocado.getEmojiCode(), 3),
             new Slot(Emoji.cherry.getEmojiCode(), 4),
             new Slot(Emoji.peach.getEmojiCode(), 4),
             new Slot(Emoji.grape.getEmojiCode(), 6),

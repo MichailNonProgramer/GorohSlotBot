@@ -1,9 +1,7 @@
 package com.urfu.GorohSlot.chat;
 
-import com.urfu.GorohSlot.bot.Bot;
 import com.urfu.GorohSlot.bot.User;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import com.urfu.GorohSlot.sender.SendAllThread;
 
 import java.util.ArrayList;
 
@@ -12,7 +10,8 @@ public class ChatController {
     public static ArrayList<User> chatUsers = new ArrayList<>();
 
     public static void writeMessage(String msg, User user) {
-        var thread = new ChatNearlyAllThread(msg, user);
+        var message = String.format("*%s*: %s", user.getUserName(), msg);
+        var thread = new SendAllThread(message, user, chatUsers);
         thread.start();
     }
 
@@ -26,24 +25,6 @@ public class ChatController {
 
     public static void deleteUser(User user) {
         chatUsers.remove(user);
-    }
-
-    public static void handleMessage(String msg, User user) {
-        var message = String.format("*%s*: %s", user.getUserName(), msg);
-        sendNearlyAllUsers(message, user);
-    }
-
-    public static void sendAllUsers(String msg) {
-        var bot = new Bot();
-        for (var chatUser : chatUsers) {
-            SendMessage sendMessage = new SendMessage().setChatId(chatUser.getUserId()).setText(msg).enableMarkdown(true);
-            sendMessage.setReplyMarkup(chatUser.getKeyboard().getReplyKeyboardMarkup());
-            try {
-                bot.execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public static String getChatUsers() {
@@ -66,20 +47,5 @@ public class ChatController {
 
     private static boolean isStatusCommand(String msg) {
         return msg.equals("Кто в курилке?");
-    }
-
-    private static void sendNearlyAllUsers(String msg, User user) {
-        var bot = new Bot();
-        for (var chatUser : chatUsers) {
-            if (!chatUser.equals(user)) {
-                SendMessage sendMessage = new SendMessage().setChatId(chatUser.getUserId()).setText(msg).enableMarkdown(true);
-                sendMessage.setReplyMarkup(chatUser.getKeyboard().getReplyKeyboardMarkup());
-                try {
-                    bot.execute(sendMessage);
-                } catch (TelegramApiException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 }

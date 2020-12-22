@@ -3,11 +3,13 @@ package com.urfu.GorohSlot.database;
 import com.urfu.GorohSlot.bot.Bot;
 import com.urfu.GorohSlot.bot.User;
 import com.urfu.GorohSlot.chat.ChatController;
+import com.urfu.GorohSlot.commands.Commands;
 
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class SQLHandler {
 
@@ -17,6 +19,7 @@ public class SQLHandler {
     private static final String UPDATE = "update userInfo " + "set balance = ?, " + "bet = ?, " +  "mode = ?, "
             + "userName = ?, " + "userFirstName = ?, " + "userLastName = ?" + "where userID = ?";
     private static final String SELECTMODE = "select * from userInfo where mode = ?";
+    private static final String SELECTALL = "select * from userInfo";
     private static Connection connection;
 
     public static User getUser(String userId, String userName, String userFirstName, String userLastName){
@@ -25,7 +28,7 @@ public class SQLHandler {
             return getDBUser(userId, userName, userFirstName, userLastName);
 
         } else {
-            User user = new User(userId, userFirstName, userLastName, userName, 100, 25, "Автомат 3x3");
+            User user = new User(userId, userFirstName, userLastName, userName, 100, 25, Commands.mode3x3);
             create(user);
             return user;
         }
@@ -93,6 +96,29 @@ public class SQLHandler {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static ArrayList<User> getAllUsers(){
+        connection();
+        PreparedStatement preparedStatement;
+        User user;
+        var userList = new ArrayList<User>();
+        try {
+            preparedStatement = connection.prepareStatement(SELECTALL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user =  new User(resultSet.getString("userID"), resultSet.getString("userFirstName"),
+                        resultSet.getString("userLastName"), resultSet.getString("userName"),
+                        Long.parseLong(resultSet.getString("balance")),
+                        Integer.parseInt(resultSet.getString("bet")),
+                        resultSet.getString("mode"));
+                userList.add(user);
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return userList;
     }
 
     public static void update(User user) {

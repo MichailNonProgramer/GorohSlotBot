@@ -23,10 +23,11 @@ public class Bot extends TelegramLongPollingBot {
             var message = update.getMessage();
             var userFirstName = chat.getFirstName();
             var userLastName = chat.getLastName();
-            var userName = chat.getUserName();
             var chatId = message.getChatId();
+            var userName = chat.getUserName().isEmpty() ? getUsername(chatId) : chat.getUserName();
             var messageText = message.getText();
             var userId = chat.getId().toString();
+            var userPhoto = chat.getPhoto();
 
             if (userData.containsKey(userId)) {
                 user = userData.get(userId);
@@ -73,6 +74,10 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private String commandsHandler(String msg) {
-        return new Commands().Command(msg, user);
+        return Commands.ExecuteCommand(msg, user);
+    }
+
+    private String getUsername(Long userId) {
+        return "Аноним" + userId.toString().substring(0, 2);
     }
 }

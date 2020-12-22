@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Bot-hiroku - Copy" />
         <module name="GorohSlot" />
+        <module name="Bot-hiroku" />
       </profile>
     </annotationProcessing>
   </component>

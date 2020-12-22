@@ -71,8 +71,4 @@ public class User {
     public void TakeOffMoney(int count){
         this.balance -= count;
     }
-
-    private void setBalance(int balance) {
-        this.balance = balance;
-    }
 }
