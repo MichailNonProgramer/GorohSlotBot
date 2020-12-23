@@ -53,7 +53,7 @@ public class Bot extends TelegramLongPollingBot {
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 } catch (Exception e){
-                    System.out.println("Exeption");
+                    System.out.println(user.getUserLastName() + user.getUserFirstname());
                 }
             }
 

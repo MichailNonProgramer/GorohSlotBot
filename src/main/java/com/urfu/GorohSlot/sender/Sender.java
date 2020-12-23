@@ -19,7 +19,7 @@ public class Sender {
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 } catch (Exception e){
-                    System.out.println("Он забанен");
+                    System.out.println(user.getUserLastName() + user.getUserFirstname());
                 }
             }
         }
