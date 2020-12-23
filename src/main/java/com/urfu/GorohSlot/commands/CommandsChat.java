@@ -20,6 +20,7 @@ public class CommandsChat {
     public static String smokeExitCommand(User user) {
         if (ChatController.chatUsers.contains(user)) {
             ChatController.deleteUser(user);
+            user.setMode(" ");
             var message = String.format("*%s* покинул нас...", user.getUserName());
             var thread = new SendAllThread(message, user, ChatController.chatUsers);
             thread.start();
