@@ -13,7 +13,7 @@ public class Bonus {
     public static void giveBonus(){
         var listUsers = SQLHandler.getAllUsers();
         var nullUser = new User("0","0","0","0",0, 0, "0");
-        addMoney(listUsers);
+        //addMoney(listUsers);
         Sender.sendAllUsers(bonusMessage, nullUser, listUsers);
     }
 
