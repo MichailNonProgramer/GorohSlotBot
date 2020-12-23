@@ -14,7 +14,7 @@ public class TimerBonus {
         Timer timer = new Timer("Timer");
 
         long delay  = 1000L;
-        long period = 1000L * 60 * 60 * 12;
+        long period = 1000L;
         timer.scheduleAtFixedRate(repeatedTask, delay, period);
     }
 }
