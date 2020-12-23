@@ -110,7 +110,9 @@ public class SQLHandler {
             preparedStatement = connection.prepareStatement(DELETED);
             preparedStatement.setString(1, user.getUserId());
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.deleteRow();
+            while (resultSet.next()) {
+                resultSet.deleteRow();
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
