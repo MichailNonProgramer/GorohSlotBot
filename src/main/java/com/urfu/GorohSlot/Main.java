@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] arg){
         ApiContextInitializer.init();
         TelegramBotsApi telegram = new TelegramBotsApi();
-        TimerBonus.start();
+        //TimerBonus.start();
         Bot bot = new Bot();
         SQLHandler.createChatUsers();
         try {
