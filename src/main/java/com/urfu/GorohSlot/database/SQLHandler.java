@@ -52,7 +52,6 @@ public class SQLHandler {
             preparedStatement.setString(1,  userId);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    System.out.println("Нашел");
                     return true;
                 }
             }

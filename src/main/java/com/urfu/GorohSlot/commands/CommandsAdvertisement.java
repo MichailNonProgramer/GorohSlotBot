@@ -16,13 +16,13 @@ public class CommandsAdvertisement {
                                 Отправляйте текст рекламы прямо сюда.
                                 Баланс %s%s
                         %s""",
-                Utils.repeat(Emoji.tilda.getEmojiCode(), 20),
+                Utils.repeat(Emoji.tilda.getEmojiCode(), 15),
                 Emoji.machine.getEmojiCode(),
                 Emoji.machine.getEmojiCode(),
                 Emoji.dollar.getEmojiCode(),
                 user.getBalance(),
                 Emoji.dollar.getEmojiCode(),
-                Utils.repeat(Emoji.tilda.getEmojiCode(), 20));
+                Utils.repeat(Emoji.tilda.getEmojiCode(), 15));
     }
 
     public static String advertExitCommand(User user) {
