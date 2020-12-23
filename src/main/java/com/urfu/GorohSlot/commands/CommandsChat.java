@@ -2,8 +2,10 @@ package com.urfu.GorohSlot.commands;
 
 import com.urfu.GorohSlot.bot.User;
 import com.urfu.GorohSlot.chat.ChatController;
+import com.urfu.GorohSlot.database.SQLHandler;
 import com.urfu.GorohSlot.sender.SendAllThread;
 import com.urfu.GorohSlot.sender.Sender;
+import org.postgresql.core.SqlCommand;
 
 public class CommandsChat {
     public static String smokeEnterCommand(User user) {
@@ -21,6 +23,7 @@ public class CommandsChat {
         if (ChatController.chatUsers.contains(user)) {
             ChatController.deleteUser(user);
             user.setMode(" ");
+            SQLHandler.update(user);
             var message = String.format("*%s* покинул нас...", user.getUserName());
             var thread = new SendAllThread(message, user, ChatController.chatUsers);
             thread.start();
