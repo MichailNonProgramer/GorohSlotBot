@@ -20,6 +20,7 @@ public class Bonus {
     private static void addMoney(ArrayList<User> listUsers){
         for (var user: listUsers) {
             user.AddMoney(sumBonus);
+            SQLHandler.update(user);
         }
     }
 }
