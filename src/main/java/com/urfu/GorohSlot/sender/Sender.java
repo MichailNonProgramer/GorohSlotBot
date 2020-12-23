@@ -16,8 +16,6 @@ public class Sender {
                 sendMessage.setReplyMarkup(listUser.getKeyboard().getReplyKeyboardMarkup());
                 try {
                     bot.execute(sendMessage);
-                } catch (TelegramApiException e) {
-                    e.printStackTrace();
                 } catch (Exception e){
                     System.out.println(user.getUserLastName() + user.getUserFirstname());
                 }
