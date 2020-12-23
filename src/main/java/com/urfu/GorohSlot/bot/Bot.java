@@ -27,7 +27,6 @@ public class Bot extends TelegramLongPollingBot {
             var userName = chat.getUserName().isEmpty() ? getUsername(chatId) : chat.getUserName();
             var messageText = message.getText();
             var userId = chat.getId().toString();
-            var userPhoto = chat.getPhoto();
 
             if (userData.containsKey(userId)) {
                 user = userData.get(userId);
@@ -53,6 +52,8 @@ public class Bot extends TelegramLongPollingBot {
                     execute(sendMessage);
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
+                } catch (Exception e){
+                    System.out.println("Exeption");
                 }
             }
 

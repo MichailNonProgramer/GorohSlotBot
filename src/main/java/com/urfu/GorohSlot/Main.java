@@ -1,5 +1,6 @@
 package com.urfu.GorohSlot;
 
+import com.urfu.GorohSlot.bonus.TimerBonus;
 import com.urfu.GorohSlot.bot.Bot;
 import com.urfu.GorohSlot.database.SQLHandler;
 import org.telegram.telegrambots.ApiContextInitializer;
@@ -10,7 +11,7 @@ public class Main {
     public static void main(String[] arg){
         ApiContextInitializer.init();
         TelegramBotsApi telegram = new TelegramBotsApi();
-        //TimerBonus.start();
+        TimerBonus.start();
         Bot bot = new Bot();
         SQLHandler.createChatUsers();
         try {

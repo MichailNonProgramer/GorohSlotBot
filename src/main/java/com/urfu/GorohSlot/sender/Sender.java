@@ -18,6 +18,8 @@ public class Sender {
                     bot.execute(sendMessage);
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
+                } catch (Exception e){
+                    System.out.println("Он забанен");
                 }
             }
         }
