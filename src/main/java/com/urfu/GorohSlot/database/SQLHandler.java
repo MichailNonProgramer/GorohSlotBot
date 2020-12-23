@@ -5,6 +5,8 @@ import com.urfu.GorohSlot.bot.User;
 import com.urfu.GorohSlot.chat.ChatController;
 import com.urfu.GorohSlot.commands.Commands;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,8 +40,12 @@ public class SQLHandler {
 
     private static void connection() {
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (SQLException e){
+            URI dbUri = new URI(System.getenv("DATABASE_URL"));
+            String username = dbUri.getUserInfo().split(":")[0];
+            String password = dbUri.getUserInfo().split(":")[1];
+            String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+            connection = DriverManager.getConnection(dbUrl, username, password);
+        } catch (SQLException | URISyntaxException e){
             e.printStackTrace();
         }
     }
