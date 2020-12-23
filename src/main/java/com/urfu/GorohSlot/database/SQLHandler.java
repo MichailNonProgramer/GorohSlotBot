@@ -15,15 +15,12 @@ import java.util.ArrayList;
 
 public class SQLHandler {
 
-    private static final String SELECT = "select * from public.\"userinfo\" where \"userID\" = ?";
+    private static final String SELECT = "select * from public.\"userinfo\" where \"userid\" = ?";
     private static final String INSERT = "insert into public.\"userinfo\" values (?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE = "update public.\"userinfo\" " + "set balance = ?, " + "bet = ?, " +  "mode = ?, "
-            + "\"userName\" = ?, " + "\"userFirstName\" = ?, " + "\"userLastName\" = ?" + "where \"userID\" = ?";
+            + "\"username\" = ?, " + "\"userfirstname\" = ?, " + "\"userlastname\" = ?" + "where \"userid\" = ?";
     private static final String SELECTMODE = "select * from public.\"userinfo\" where mode = ?";
     private static final String SELECTALL = "select * from public.\"userinfo\"";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "0000";
-    private static final String URL = "jdbc:postgresql://localhost:5432/playersdb";
     private static Connection connection;
 
     public static User getUser(String userId, String userName, String userFirstName, String userLastName){
