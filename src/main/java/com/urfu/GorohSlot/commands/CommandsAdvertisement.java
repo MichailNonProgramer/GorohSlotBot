@@ -1,6 +1,7 @@
 package com.urfu.GorohSlot.commands;
 
 import com.urfu.GorohSlot.bot.User;
+import com.urfu.GorohSlot.database.SQLHandler;
 import com.urfu.GorohSlot.games.tools.Emoji;
 import com.urfu.GorohSlot.games.tools.Utils;
 
@@ -28,6 +29,8 @@ public class CommandsAdvertisement {
     public static String advertExitCommand(User user) {
         user.setMode("");
         Commands.chooseModeCommand(user);
+        user.setMode(" ");
+        SQLHandler.update(user);
         return "Вы вышли из режима реклама";
     }
 }
