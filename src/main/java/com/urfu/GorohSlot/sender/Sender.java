@@ -17,7 +17,7 @@ public class Sender {
                 try {
                     bot.execute(sendMessage);
                 } catch (Exception e){
-                    System.out.println("Эта тварь -" + user.getUserLastName() + user.getUserFirstname());
+                    System.out.println("Эта тварь -" + user.getUserName() + user.getUserLastName() + user.getUserFirstname());
                 }
             }
         }
