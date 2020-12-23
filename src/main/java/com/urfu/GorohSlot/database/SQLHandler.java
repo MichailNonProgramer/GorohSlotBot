@@ -21,6 +21,7 @@ public class SQLHandler {
             + "\"username\" = ?, " + "\"userfirstname\" = ?, " + "\"userlastname\" = ?" + "where \"userid\" = ?";
     private static final String SELECTMODE = "select * from public.\"userinfo\" where mode = ?";
     private static final String SELECTALL = "select * from public.\"userinfo\"";
+    private static final String DETETED = "delete * from public.\"userinfo\"  + where \"userid\" = ?";
     private static Connection connection;
 
     public static User getUser(String userId, String userName, String userFirstName, String userLastName){
@@ -103,8 +104,19 @@ public class SQLHandler {
         }
     }
 
+    public static void detetUsers(User user){
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(DETETED);
+            preparedStatement.setString(1, user.getUserId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.deleteRow();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public static ArrayList<User> getAllUsers(){
-        connection();
         PreparedStatement preparedStatement;
         User user;
         var userList = new ArrayList<User>();
