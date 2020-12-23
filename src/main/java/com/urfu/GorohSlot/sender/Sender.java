@@ -17,7 +17,7 @@ public class Sender {
                 try {
                     bot.execute(sendMessage);
                 } catch (Exception e){
-                    System.out.println(user.getUserName() + user.getUserLastName() + user.getUserFirstname() + "-Заблокировал наше чадо");
+                    System.out.println(listUser.getUserName() + listUser.getUserLastName() + listUser.getUserFirstname() + "-Заблокировал наше чадо");
                 }
             }
         }
