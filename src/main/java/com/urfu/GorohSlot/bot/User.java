@@ -12,8 +12,9 @@ public class User {
     private long balance;
     private int bet;
     private String mode;
+    private String keyboardState;
 
-    public User(String id, String firstName, String lastName, String name, long balance, int bet, String mode) {
+    public User(String id, String firstName, String lastName, String name, long balance, int bet, String mode, String keyboardState) {
         this.userId = id;
         this.userFirstname = firstName;
         this.userLastName = lastName;
@@ -22,6 +23,7 @@ public class User {
         this.bet = bet;
         this.mode = mode;
         this.keyboardTelegram = new KeyboardTelegram(new ReplyKeyboardMarkup());
+        this.keyboardState = keyboardState;
     }
 
     public KeyboardTelegram getKeyboard(){
@@ -70,5 +72,11 @@ public class User {
 
     public void TakeOffMoney(int count){
         this.balance -= count;
+    }
+
+    public String getKeyboardState(){return this.keyboardState;}
+
+    public void setKeyboardState(String keyboardState) {
+        this.keyboardState = keyboardState;
     }
 }

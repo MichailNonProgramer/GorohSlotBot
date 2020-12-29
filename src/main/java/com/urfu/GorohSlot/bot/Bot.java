@@ -40,9 +40,8 @@ public class Bot extends TelegramLongPollingBot {
             }
 
             String sendMessageText;
-            if (ChatController.isWriteMessage(messageText, user)) {
-                sendMessageText = "Загадочно молчит";
-                ChatController.writeMessage(messageText, user);
+            if (user.getMode().equals(Commands.smoke)) {
+                sendMessageText = commandsHandler(messageText);
             }
             else {
                 sendMessageText = commandsHandler(messageText);

@@ -2,6 +2,7 @@ package com.urfu.GorohSlot.database;
 
 import com.urfu.GorohSlot.bot.Bot;
 import com.urfu.GorohSlot.bot.User;
+import com.urfu.GorohSlot.bot.telegramBot.KeyboardStates;
 import com.urfu.GorohSlot.chat.ChatController;
 import com.urfu.GorohSlot.commands.Commands;
 
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 public class SQLHandler {
 
     private static final String SELECT = "select * from public.\"userinfo\" where \"userid\" = ?";
-    private static final String INSERT = "insert into public.\"userinfo\" values (?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "insert into public.\"userinfo\" values (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE = "update public.\"userinfo\" " + "set balance = ?, " + "bet = ?, " +  "mode = ?, "
-            + "\"username\" = ?, " + "\"userfirstname\" = ?, " + "\"userlastname\" = ?" + "where \"userid\" = ?";
+            + "\"username\" = ?, " + "\"userfirstname\" = ?, " + "\"userlastname\" = ?" + "\"state\" = ?" + "where \"userid\" = ?";
     private static final String SELECTMODE = "select * from public.\"userinfo\" where mode = ?";
     private static final String SELECTALL = "select * from public.\"userinfo\"";
     private static final String DELETED = "delete from public.\"userinfo\" where \"userid\" = ?";
@@ -30,7 +31,8 @@ public class SQLHandler {
             return getDBUser(userId, userName, userFirstName, userLastName);
 
         } else {
-            User user = new User(userId, userFirstName, userLastName, userName, 100, 25, Commands.mode3x3);
+            User user = new User(userId, userFirstName, userLastName, userName, 100,
+                    25, Commands.mode3x3, KeyboardStates.States.NONE.toString());
             create(user);
             return user;
         }
@@ -74,7 +76,7 @@ public class SQLHandler {
                         userLastName, userName,
                         Long.parseLong(resultSet.getString("balance")),
                         Integer.parseInt(resultSet.getString("bet")),
-                        resultSet.getString("mode"));
+                        resultSet.getString("mode"), resultSet.getString("state"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -95,7 +97,7 @@ public class SQLHandler {
                         resultSet.getString("userLastName"), resultSet.getString("userName"),
                         Long.parseLong(resultSet.getString("balance")),
                         Integer.parseInt(resultSet.getString("bet")),
-                        resultSet.getString("mode"));
+                        resultSet.getString("mode"), resultSet.getString("state"));
                 ChatController.chatUsers.add(user);
                 Bot.userData.put(user.getUserId(), user);
             }
@@ -130,7 +132,7 @@ public class SQLHandler {
                         resultSet.getString("userLastName"), resultSet.getString("userName"),
                         Long.parseLong(resultSet.getString("balance")),
                         Integer.parseInt(resultSet.getString("bet")),
-                        resultSet.getString("mode"));
+                        resultSet.getString("mode"), resultSet.getString("state"));
                 userList.add(user);
             }
         }
@@ -150,7 +152,8 @@ public class SQLHandler {
             preparedStatement.setString(4, user.getUserName());
             preparedStatement.setString(5, user.getUserFirstname());
             preparedStatement.setString(6, user.getUserLastName());
-            preparedStatement.setString(7, user.getUserId());
+            preparedStatement.setString(7, user.getKeyboardState());
+            preparedStatement.setString(8, user.getUserId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -168,6 +171,7 @@ public class SQLHandler {
             preparedStatement.setString(5, user.getUserName());
             preparedStatement.setString(6, user.getUserFirstname());
             preparedStatement.setString(7, user.getUserLastName());
+            preparedStatement.setString(8, user.getKeyboardState());
             preparedStatement.execute();
         } catch (SQLException e){
             e.printStackTrace();

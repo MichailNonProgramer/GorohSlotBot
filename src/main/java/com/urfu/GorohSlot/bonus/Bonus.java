@@ -2,6 +2,7 @@ package com.urfu.GorohSlot.bonus;
 
 import com.urfu.GorohSlot.bot.Bot;
 import com.urfu.GorohSlot.bot.User;
+import com.urfu.GorohSlot.bot.telegramBot.KeyboardStates;
 import com.urfu.GorohSlot.database.SQLHandler;
 import com.urfu.GorohSlot.sender.Sender;
 
@@ -13,7 +14,8 @@ public class Bonus {
 
     public static void giveBonus(){
         var listUsers = SQLHandler.getAllUsers();
-        var nullUser = new User("0","0","0","0",0, 0, "0");
+        var nullUser = new User("0","0","0","0",0,
+                0, "0", KeyboardStates.States.NONE.toString());
         addMoney(listUsers);
         Sender.sendAllUsers(bonusMessage, nullUser, listUsers);
     }

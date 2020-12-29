@@ -9,10 +9,11 @@ public class ChatController {
     // Главный список всех юзеров в чате
     public static ArrayList<User> chatUsers = new ArrayList<>();
 
-    public static void writeMessage(String msg, User user) {
+    public static String  writeMessage(String msg, User user) {
         var message = String.format("*%s*: %s", user.getUserName(), msg);
         var thread = new SendAllThread(message, user, chatUsers);
         thread.start();
+        return "Загадочно молчит";
     }
 
     public static boolean isWriteMessage(String msg, User user) {

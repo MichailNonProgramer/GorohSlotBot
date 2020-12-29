@@ -1,11 +1,12 @@
 package com.urfu.GorohSlot.commands;
 
 import com.urfu.GorohSlot.bot.User;
+import com.urfu.GorohSlot.bot.telegramBot.KeyboardStates;
+import com.urfu.GorohSlot.bot.telegramBot.KeyboardsCommandTelegram;
 import com.urfu.GorohSlot.chat.ChatController;
 import com.urfu.GorohSlot.database.SQLHandler;
 import com.urfu.GorohSlot.sender.SendAllThread;
 import com.urfu.GorohSlot.sender.Sender;
-import org.postgresql.core.SqlCommand;
 
 public class CommandsChat {
     public static String smokeEnterCommand(User user) {
@@ -22,12 +23,13 @@ public class CommandsChat {
     public static String smokeExitCommand(User user) {
         if (ChatController.chatUsers.contains(user)) {
             ChatController.deleteUser(user);
-            user.setMode(" ");
+            user.setKeyboardState(KeyboardStates.States.CHOOSEMODE.toString());
+            user.setMode(Commands.chooseMode);
             SQLHandler.update(user);
             var message = String.format("*%s* покинул нас...", user.getUserName());
             var thread = new SendAllThread(message, user, ChatController.chatUsers);
             thread.start();
-            Commands.chooseModeCommand(user);
+            KeyboardsCommandTelegram.chooseModeCommand(user);
             return "Вы вышли из курилки";
         }
         return "Вы не в курилке";
