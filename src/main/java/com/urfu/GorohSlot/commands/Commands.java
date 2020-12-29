@@ -50,7 +50,7 @@ public class Commands {
         }
         if (user.getKeyboardState().equals(KeyboardStates.States.CHOOSEMODE.toString())) {
             return switch (msg) {
-                case mode3x3, mode5x4, dice, advert -> setModeCommand(msg, user);
+                case mode3x3, mode5x4, dice, advert, smoke -> setModeCommand(msg, user);
                 case back, start -> KeyboardsCommandTelegram.startCommand(user);
                 default -> defaultMsg;
             };

@@ -128,11 +128,17 @@ public class SQLHandler {
             preparedStatement = connection.prepareStatement(SELECTALL);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user =  new User(resultSet.getString("userID"), resultSet.getString("userFirstName"),
-                        resultSet.getString("userLastName"), resultSet.getString("userName"),
-                        Long.parseLong(resultSet.getString("balance")),
-                        Integer.parseInt(resultSet.getString("bet")),
-                        resultSet.getString("mode"), resultSet.getString("state"));
+                var id = resultSet.getString("userID");
+                if (Bot.userData.containsKey(id))
+                    user = Bot.userData.get(id);
+                else {
+                    user = new User(resultSet.getString("userID"), resultSet.getString("userFirstName"),
+                            resultSet.getString("userLastName"), resultSet.getString("userName"),
+                            Long.parseLong(resultSet.getString("balance")),
+                            Integer.parseInt(resultSet.getString("bet")),
+                            resultSet.getString("mode"), resultSet.getString("state"));
+                    Bot.userData.put(id, user);
+                }
                 userList.add(user);
             }
         }
