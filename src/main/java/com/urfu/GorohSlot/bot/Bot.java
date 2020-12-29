@@ -40,12 +40,14 @@ public class Bot extends TelegramLongPollingBot {
             }
 
             var sendMessageText = commandsHandler(messageText);
-            SendMessage sendMessage = new SendMessage().setChatId(chatId).setText(sendMessageText);
-            sendMessage.setReplyMarkup(user.getKeyboard().getReplyKeyboardMarkup());
-            try {
-                execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
+            if (!sendMessageText.equals("Загадочно молчит")) {
+                SendMessage sendMessage = new SendMessage().setChatId(chatId).setText(sendMessageText);
+                sendMessage.setReplyMarkup(user.getKeyboard().getReplyKeyboardMarkup());
+                try {
+                    execute(sendMessage);
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
             }
 
             Logger.log(userFirstName, userLastName, userName, userId, messageText, sendMessageText);
