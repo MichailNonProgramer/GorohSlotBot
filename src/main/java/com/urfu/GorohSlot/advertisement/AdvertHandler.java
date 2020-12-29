@@ -24,7 +24,7 @@ public class AdvertHandler {
         var userList = SQLHandler.getAllUsers();
         var finalMessage = String.format("%sРЕКЛАМНАЯ ВЕСТЬ%s\n%s",
                 Emoji.attention.getEmojiCode(), Emoji.attention.getEmojiCode(),
-                Utils.repeat(Emoji.tilda.getEmojiCode(), 5))
+                Utils.repeat(Emoji.tilda.getEmojiCode(), 8))
                 + msg;
         var thread = new SendAllThread(finalMessage, user, userList);
         thread.start();
