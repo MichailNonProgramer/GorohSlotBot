@@ -19,7 +19,7 @@ public class SQLHandler {
     private static final String SELECT = "select * from public.\"userinfo\" where \"userid\" = ?";
     private static final String INSERT = "insert into public.\"userinfo\" values (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE = "update public.\"userinfo\" " + "set balance = ?, " + "bet = ?, " +  "mode = ?, "
-            + "\"username\" = ?, " + "\"userfirstname\" = ?, " + "\"userlastname\" = ?" + "\"state\" = ?" + "where \"userid\" = ?";
+            + "\"username\" = ?, " + "\"userfirstname\" = ?, " + "\"userlastname\" = ?," + "\"state\" = ?" + "where \"userid\" = ?";
     private static final String SELECTMODE = "select * from public.\"userinfo\" where mode = ?";
     private static final String SELECTALL = "select * from public.\"userinfo\"";
     private static final String DELETED = "delete from public.\"userinfo\" where \"userid\" = ?";

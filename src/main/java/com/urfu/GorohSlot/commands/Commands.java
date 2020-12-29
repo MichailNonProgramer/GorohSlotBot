@@ -121,7 +121,6 @@ public class Commands {
     }
 
     private static String setModeCommand(String msg, User user) {
-        KeyboardsCommandTelegram.startCommand(user);
         user.setMode(msg);
         if (msg.equals(smoke)) {
             user.setKeyboardState(KeyboardStates.States.CHATMODE.toString());
@@ -131,6 +130,7 @@ public class Commands {
             user.setKeyboardState(KeyboardStates.States.ADVERTMODE.toString());
             return CommandsAdvertisement.advertEnterCommand(user);
         }
+        KeyboardsCommandTelegram.startCommand(user);
         return String.format("Выбран режим: %s.", msg);
     }
 
