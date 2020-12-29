@@ -39,19 +39,13 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
 
-            String sendMessageText;
-            if (user.getMode().equals(Commands.smoke)) {
-                sendMessageText = commandsHandler(messageText);
-            }
-            else {
-                sendMessageText = commandsHandler(messageText);
-                SendMessage sendMessage = new SendMessage().setChatId(chatId).setText(sendMessageText);
-                sendMessage.setReplyMarkup(user.getKeyboard().getReplyKeyboardMarkup());
-                try {
-                    execute(sendMessage);
-                } catch (TelegramApiException e) {
-                    e.printStackTrace();
-                }
+            var sendMessageText = commandsHandler(messageText);
+            SendMessage sendMessage = new SendMessage().setChatId(chatId).setText(sendMessageText);
+            sendMessage.setReplyMarkup(user.getKeyboard().getReplyKeyboardMarkup());
+            try {
+                execute(sendMessage);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
             }
 
             Logger.log(userFirstName, userLastName, userName, userId, messageText, sendMessageText);
