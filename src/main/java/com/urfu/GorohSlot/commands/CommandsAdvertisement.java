@@ -13,11 +13,11 @@ public class CommandsAdvertisement {
         user.getKeyboard().AddButtonOneLine(Commands.exitAdvert);
         user.getKeyboard().SaveKeyboard();
         return String.format("""
-                        %s%sВы попали на одну из лучших рекламных площадок%s
+                        %s%sГде лучшая реклама? Здесь!%s
                            Ваше сообщение могут увидеть 
                            миллионы наших пользователей:
                            Цена - 1000%s за 1 символ
-                           Отправляйте текст рекламы прямо сюда.
+                           Отправляйте текст рекламы сюда.
                            Баланс %s%s
                         %s""",
                 Utils.repeat(Emoji.tilda.getEmojiCode(), 15),

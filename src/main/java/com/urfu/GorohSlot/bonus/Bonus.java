@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Bonus {
     private static final String bonusMessage = "Вам выдано 40 гривен";
-    private static final int sumBonus = 10000;
+    private static final int sumBonus = 1000000000;
 
     public static void giveBonus(){
         var listUsers = SQLHandler.getAllUsers();

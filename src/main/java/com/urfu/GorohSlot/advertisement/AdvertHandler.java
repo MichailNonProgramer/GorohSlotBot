@@ -3,6 +3,7 @@ package com.urfu.GorohSlot.advertisement;
 import com.urfu.GorohSlot.bot.User;
 import com.urfu.GorohSlot.database.SQLHandler;
 import com.urfu.GorohSlot.games.tools.Emoji;
+import com.urfu.GorohSlot.games.tools.Utils;
 import com.urfu.GorohSlot.sender.SendAllThread;
 
 public class AdvertHandler {
@@ -21,8 +22,9 @@ public class AdvertHandler {
                     Math.min(userMaxSymbols, symbolLimit));
         }
         var userList = SQLHandler.getAllUsers();
-        var finalMessage = String.format("%sРЕКЛАМНАЯ ВЕСТЬ%s\n",
-                Emoji.attention.getEmojiCode(), Emoji.attention.getEmojiCode())
+        var finalMessage = String.format("%sРЕКЛАМНАЯ ВЕСТЬ%s\n%s",
+                Emoji.attention.getEmojiCode(), Emoji.attention.getEmojiCode(),
+                Utils.repeat(Emoji.tilda.getEmojiCode(), 5))
                 + msg;
         var thread = new SendAllThread(finalMessage, user, userList);
         thread.start();
