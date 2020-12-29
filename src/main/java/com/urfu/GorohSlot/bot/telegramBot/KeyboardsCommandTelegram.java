@@ -52,11 +52,11 @@ public class KeyboardsCommandTelegram {
 
     private static void checkAdvert(User user){
         if(user.getMode().equals(Commands.advert))
-            user.setMode(Commands.chooseMode);
+            user.setMode(Commands.start);
     }
 
     private static void checkSmoke(User user) {
         if (user.getMode().equals(Commands.smoke))
-            CommandsChat.smokeExitCommand(user);
+            user.setMode(Commands.start);
     }
 }
