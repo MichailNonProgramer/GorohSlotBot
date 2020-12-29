@@ -1,6 +1,7 @@
 package com.urfu.GorohSlot.bot.telegramBot;
 
 import com.urfu.GorohSlot.bot.User;
+import com.urfu.GorohSlot.chat.ChatController;
 import com.urfu.GorohSlot.commands.Commands;
 import com.urfu.GorohSlot.commands.CommandsChat;
 
@@ -56,7 +57,9 @@ public class KeyboardsCommandTelegram {
     }
 
     private static void checkSmoke(User user) {
-        if (user.getMode().equals(Commands.smoke))
+        if (user.getMode().equals(Commands.smoke)) {
             user.setMode(Commands.start);
+            ChatController.chatUsers.remove(user);
+        }
     }
 }
