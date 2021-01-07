@@ -1,6 +1,5 @@
 package com.urfu.GorohSlot.bot;
 
-import com.urfu.GorohSlot.chat.ChatController;
 import com.urfu.GorohSlot.commands.Commands;
 import com.urfu.GorohSlot.database.SQLHandler;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;

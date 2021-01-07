@@ -2,6 +2,7 @@ package com.urfu.GorohSlot.sender;
 
 import com.urfu.GorohSlot.bot.Bot;
 import com.urfu.GorohSlot.bot.User;
+import com.urfu.GorohSlot.chat.ChatController;
 import com.urfu.GorohSlot.database.SQLHandler;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
@@ -19,6 +20,7 @@ public class Sender {
                 } catch (Exception e){
                     SQLHandler.deleteUsers(listUser);
                     Bot.userData.remove(listUser.getUserId());
+                    ChatController.chatUsers.remove(user);
                     System.out.println(listUser.getUserName() + listUser.getUserLastName() + listUser.getUserFirstname() + "-Заблокировал наше чадо");
                 }
             }
