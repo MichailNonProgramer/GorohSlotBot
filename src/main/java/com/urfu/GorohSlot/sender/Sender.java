@@ -18,7 +18,7 @@ public class Sender {
                 try {
                     bot.execute(sendMessage);
                 } catch (Exception e){
-                    SQLHandler.deleteUsers(listUser);
+                    //SQLHandler.deleteUsers(listUser);
                     Bot.userData.remove(listUser.getUserId());
                     ChatController.chatUsers.remove(listUser);
                     System.out.println(listUser.getUserName() + listUser.getUserLastName() + listUser.getUserFirstname() + "-Заблокировал наше чадо");
