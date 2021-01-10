@@ -21,7 +21,7 @@ public class Sender {
                     //SQLHandler.deleteUsers(listUser);
                     Bot.userData.remove(listUser.getUserId());
                     ChatController.chatUsers.remove(listUser);
-                    System.out.println(listUser.getUserName() + listUser.getUserLastName() + listUser.getUserFirstname() + "-Заблокировал наше чадо");
+                    //System.out.println(listUser.getUserName() + listUser.getUserLastName() + listUser.getUserFirstname() + "-Заблокировал наше чадо");
                 }
             }
         }
