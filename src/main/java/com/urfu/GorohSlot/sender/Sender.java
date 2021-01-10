@@ -20,7 +20,7 @@ public class Sender {
                 } catch (Exception e){
                     SQLHandler.deleteUsers(listUser);
                     Bot.userData.remove(listUser.getUserId());
-                    ChatController.chatUsers.remove(user);
+                    ChatController.chatUsers.remove(listUser);
                     System.out.println(listUser.getUserName() + listUser.getUserLastName() + listUser.getUserFirstname() + "-Заблокировал наше чадо");
                 }
             }
