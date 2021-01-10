@@ -113,7 +113,7 @@ public class Commands {
     }
 
     private static String addBalanceCommand(User user) {
-        var rnd = (int) (Math.random() * 500);
+        var rnd = (int) (Math.random() * 1000);
         user.AddMoney(rnd);
         return String.format("Держи %s%s",
                 rnd,

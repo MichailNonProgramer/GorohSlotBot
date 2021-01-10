@@ -5,7 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 
 public class User {
     private final String userId;
-    private final String userName;
+    private String userName;
     private final String userFirstname;
     private final String userLastName;
     private KeyboardTelegram keyboardTelegram;
@@ -72,6 +72,10 @@ public class User {
 
     public void TakeOffMoney(int count){
         this.balance -= count;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
     }
 
     public String getKeyboardState(){return this.keyboardState;}

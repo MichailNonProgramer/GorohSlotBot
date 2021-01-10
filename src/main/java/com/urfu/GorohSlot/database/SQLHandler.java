@@ -32,7 +32,7 @@ public class SQLHandler {
 
         } else {
             User user = new User(userId, userFirstName, userLastName, userName, 100,
-                    25, Commands.mode3x3, KeyboardStates.States.NONE.toString());
+                    30, Commands.mode3x3, KeyboardStates.States.NONE.toString());
             create(user);
             return user;
         }

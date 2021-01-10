@@ -29,6 +29,9 @@ public class Bot extends TelegramLongPollingBot {
 
             if (userData.containsKey(userId)) {
                 user = userData.get(userId);
+                if(!user.getUserName().equals(userName)) {
+                    user.setUserName(userName);
+                }
             }
             else {
                 try {
@@ -71,6 +74,6 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private String getUsername(Long userId) {
-        return "Аноним" + userId.toString().substring(0, 2);
+        return "anonymous_" + userId.toString().substring(0, 2);
     }
 }
