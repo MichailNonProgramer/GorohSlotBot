@@ -23,7 +23,7 @@ public class Bot extends TelegramLongPollingBot {
             var userFirstName = chat.getFirstName();
             var userLastName = chat.getLastName();
             var chatId = message.getChatId();
-            var userName = chat.getUserName().isEmpty() ? getUsername(chatId) : chat.getUserName();
+            var userName = chat.getUserName() == null ? getUsername(chatId) : chat.getUserName();
             var messageText = message.getText();
             var userId = chat.getId().toString();
 
